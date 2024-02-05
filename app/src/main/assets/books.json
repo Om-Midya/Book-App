@@ -8,7 +8,8 @@
     "user": "John Doe",
     "tags": ["Classic", "Fiction", "Roaring Twenties"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": true
+    "isAvailable": true,
+    "noOfDays": 7.0
   },
   {
     "id": "2",
@@ -19,7 +20,8 @@
     "user": "Alice Johnson",
     "tags": ["Classic", "Social Justice", "Coming of Age"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": true
+    "isAvailable": true,
+    "noOfDays": 14.0
   },
   {
     "id": "3",
@@ -30,7 +32,8 @@
     "user": "Robert Smith",
     "tags": ["Dystopian", "Political", "Science Fiction"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": false
+    "isAvailable": false,
+    "noOfDays": 21.0
   },
   {
     "id": "4",
@@ -40,7 +43,9 @@
     "rating": 4.6,
     "user": "Emily White",
     "tags": ["Classic", "Romance", "Social Satire"],
-    "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",    "isAvailable": true
+    "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
+    "isAvailable": true,
+    "noOfDays": 7.0
   },
   {
     "id": "5",
@@ -51,7 +56,8 @@
     "user": "Daniel Brown",
     "tags": ["Coming of Age", "Literary Fiction"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": true
+    "isAvailable": true,
+    "noOfDays": 14.0
   },
   {
     "id": "6",
@@ -62,7 +68,8 @@
     "user": "Sophia Davis",
     "tags": ["Fantasy", "Adventure", "Epic"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": false
+    "isAvailable": false,
+    "noOfDays": 21.0
   },
   {
     "id": "7",
@@ -73,7 +80,8 @@
     "user": "Liam Wilson",
     "tags": ["Magical Realism", "Latin American Literature"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": true
+    "isAvailable": true,
+    "noOfDays": 45.0
   },
   {
     "id": "8",
@@ -84,7 +92,8 @@
     "user": "Olivia Robinson",
     "tags": ["Fantasy", "Adventure"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": false
+    "isAvailable": false,
+    "noOfDays": 30.0
   },
   {
     "id": "9",
@@ -95,7 +104,8 @@
     "user": "Lucas Moore",
     "tags": ["Dystopian", "Science Fiction", "Social Satire"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": true
+    "isAvailable": true,
+    "noOfDays": 14.0
   },
   {
     "id": "10",
@@ -106,6 +116,7 @@
     "user": "Emma Adams",
     "tags": ["Adventure", "Whaling", "American Literature"],
     "description": "In considering a recent literary work, \"The Quantum Nexus,\" the author adeptly navigates the intricate realms of quantum theory and cosmology. The narrative unfolds with precision, blending scientific rigor with accessible language. The book offers a compelling exploration, catering to both enthusiasts and those seeking a nuanced understanding of complex subjects.",
-    "isAvailable": false
+    "isAvailable": false,
+    "noOfDays": 19.0
   }
 ]

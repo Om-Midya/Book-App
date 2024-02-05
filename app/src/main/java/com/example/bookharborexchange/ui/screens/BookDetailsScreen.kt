@@ -3,6 +3,8 @@ package com.example.bookharborexchange.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +26,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +45,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.example.bookharborexchange.R
 import com.example.bookharborexchange.model.Book
+import java.lang.Integer.parseInt
 
 @Composable
 fun BookInfo(book: Book) {
@@ -208,11 +212,16 @@ fun BookInfo(book: Book) {
     }
 }
 
-
 @Composable
-fun BookDetailsScreen(navController: NavController,currBook: Book) {
+fun BookDetailsScreen(navController: NavController, currBook: Book) {
     var showDialog by remember { mutableStateOf(false) }
     var borrowDays by remember { mutableStateOf(1f) }
+
+    // Create a mutable state that recomposes the Slider when currBook.noOfDays changes
+    val sliderRange by remember { mutableStateOf(1f..currBook.noOfDays.coerceAtLeast(1f)) }
+
+
+
 
     if (showDialog) {
         Dialog(onDismissRequest = { showDialog = false }) {
@@ -230,8 +239,14 @@ fun BookDetailsScreen(navController: NavController,currBook: Book) {
                     Slider(
                         value = borrowDays,
                         onValueChange = { borrowDays = it },
-                        valueRange = 1f..30f, // Change this to your preferred range
-                        steps = 30 // Change this to your preferred number of steps
+                        valueRange = sliderRange, // Use the mutable state here
+                        steps = currBook.noOfDays.toInt(), // Set the steps to currBook.NoOfDays
+                        enabled = true, // Ensure the Slider is enabled
+                        // Ensure the Slider is interactive
+                        interactionSource = remember { MutableInteractionSource() },
+                        modifier = Modifier
+                            .fillMaxWidth() // Ensure the Slider is visible and receiving touch events
+                            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { }
                     )
                     Text(text = "Days: ${borrowDays.toInt()}")
                     Button(onClick = {

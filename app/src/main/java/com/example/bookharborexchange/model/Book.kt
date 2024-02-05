@@ -9,5 +9,6 @@ data class Book(
     val user: String,
     val tags: List<String>,
     val description: String,
-    val isAvailable: Boolean
+    val isAvailable: Boolean,
+    val noOfDays: Float
 )
