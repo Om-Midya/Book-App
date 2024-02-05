@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,6 +50,8 @@ import java.lang.Integer.parseInt
 
 @Composable
 fun BookInfo(book: Book) {
+    val context = LocalContext.current
+    val imageResId = context.resources.getIdentifier(book.imgUrl, "drawable", context.packageName)
     Column {
         Box(
             modifier = Modifier
@@ -62,7 +65,7 @@ fun BookInfo(book: Book) {
                     verticalArrangement = Arrangement.Top
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.cover1),
+                        painter = painterResource(id = imageResId),
                         contentDescription = "Null",
                         contentScale = ContentScale.FillWidth,
                         modifier = Modifier
@@ -83,7 +86,7 @@ fun BookInfo(book: Book) {
                     .height(275.dp),
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.cover1),
+                    painter = painterResource(id = imageResId),
                     contentDescription = "Null",
                     modifier = Modifier
                         .fillMaxHeight()

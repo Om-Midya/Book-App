@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,16 +44,18 @@ fun BookItem(book: Book, onClick: () -> Unit) {
             verticalAlignment = Alignment.Top,
 
         ) {
-            BookImage(imgUrl = R.drawable.cover1)
+            BookImage(imgUrl = book.imgUrl)
             BookDetails(book.title, book.author, book.user)
         }
     }
 }
 
 @Composable
-fun BookImage(imgUrl: Int) {
+fun BookImage(imgUrl: String) {
+    val context = LocalContext.current
+    val imageResId = context.resources.getIdentifier(imgUrl, "drawable", context.packageName)
     Image(
-        painter = painterResource(id = imgUrl),
+        painter = painterResource(id = imageResId),
         contentDescription = "",
         modifier = Modifier
             .size(120.dp)
