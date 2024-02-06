@@ -24,8 +24,6 @@ This screen displays the details of a selected book. It includes a "Borrow This 
 
 The dialog box has a nice background shading for a better user experience. The selected number of days is displayed in the dialog box, and the user can confirm their selection by clicking the "Borrow Book" button in the dialog box.
 
-**The Book Image is Hardcoded for now because of a small error, Will be resolved soon**
-
 ## Future Enhancements
 
-The application is still under development, **Only UI Has been developed for now, State Management for Form Validation is left and will be done soon, Project Was done within 5 hours before which I had 0 Knowldge of Kotlin**
+The application is still under development, **Only UI Has been developed for now, State Management for Form Validation is left and will be done soon, Project Was done within 5 hours before which I had 0 Knowledge of Kotlin**
