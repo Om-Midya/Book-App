@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = "Home"
                     ){
                         composable("Home"){
-                            MainScreen(navController = navController)
+                            MainScreen(navController = navController, context = this@MainActivity)
                         }
                         composable("BookDetails/{bookId}"){
                             backStackEntry ->
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             BookDetailsScreen(navController, book!!)
                         }
                         composable("AddBook"){
-                            AddBookScreen(navController = navController)
+                            AddBookScreen(navController = navController, context = this@MainActivity)
                         }
                     }
                 }
