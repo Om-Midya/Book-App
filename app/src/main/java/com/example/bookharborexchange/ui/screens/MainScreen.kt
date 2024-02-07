@@ -1,5 +1,7 @@
 package com.example.bookharborexchange.ui.screens
 
+import android.content.Context
+import android.view.WindowManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,17 +23,24 @@ import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,16 +48,25 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.bookharborexchange.DataManager
+import com.example.bookharborexchange.model.Book
 import com.example.bookharborexchange.ui.components.BookList
+import com.example.bookharborexchange.ui.components.SetStatusBarColor
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
 
-
+var bookList: MutableList<Book> = DataManager.data
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, context: Context) {
     val searchQuery = remember { mutableStateOf("") }
 
+
+
     Column {
-        SearchBar()
-        BookList(books = DataManager.data, navController = navController)
+        Header()
+        BookList(books = bookList, navController = navController)
     }
     AddBookButton(navController = navController)
 }
@@ -80,106 +98,100 @@ fun AddBookButton(navController: NavController){
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(){
-
-    Card(
-        elevation = CardDefaults.cardElevation(defaultElevation = 15.dp),
-        colors = CardDefaults.cardColors(
+fun Header(){
+    SetStatusBarColor(color = Color.White)
+    TopAppBar(
+        title = {
+            Text(
+                text = "Book Harbor",
+                fontSize = 20.sp,
+                fontWeight = Bold,
+                modifier = Modifier.padding(10.dp)
+            )
+        },
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Rounded.Menu,
+                contentDescription = "Menu",
+                tint = Color.Black,
+            )
+        },
+        actions = {
+            Icon(
+                imageVector = Icons.Rounded.Notifications,
+                contentDescription = "Notifications",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.White,
-            contentColor = Color.Black,
-            disabledContainerColor = Color.Gray,
-            disabledContentColor = Color.DarkGray,
-        ),
-
+            actionIconContentColor = Color.Black,
+            navigationIconContentColor = Color.Black,
+            titleContentColor = Color.Black,
+        )
     )
-     {
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+
+    val searchQuery = remember { mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White)
+            .padding(start = 10.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+
+    ) {
+        TextField(
+            value = searchQuery.value,
+            onValueChange = { searchQuery.value = it },
+            placeholder = {
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(start = 10.dp, top = 10.dp, end = 10.dp)
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
+                    Text(
+                        text = "Search",
+                        fontSize = 15.sp,
+                    )
                     Icon(
-                        imageVector = Icons.Rounded.Menu,
-                        contentDescription = "Menu",
+                        imageVector = Icons.Rounded.Search,
+                        contentDescription = "Search",
                         tint = Color.Black,
                     )
-                    Text(
-                        text = "Book Harbor",
-                        fontSize = 20.sp,
-                        fontWeight = Bold,
-                        modifier = Modifier
-                            .padding(10.dp)
-                    )
                 }
-                Icon(
-                    imageVector = Icons.Rounded.Notifications,
-                    contentDescription = "Notifications",
-                    modifier = Modifier
-                        .padding(end = 10.dp)
-                )
-            }
+            },
+            modifier = Modifier
+                .padding(5.dp)
+                .width(300.dp)
+                .height(44.dp)
+                .clip(RoundedCornerShape(15.dp)),
+            colors = TextFieldDefaults.colors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            )
 
-            val searchQuery = remember { mutableStateOf("") }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                TextField(
-                    value = searchQuery.value,
-                    onValueChange = { searchQuery.value = it },
-                    placeholder = {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                        ) {
-                            Text(
-                                text = "Search",
-                                fontSize = 15.sp,
-                            )
-                            Icon(
-                                imageVector = Icons.Rounded.Search,
-                                contentDescription = "Search",
-                                tint = Color.Black,
-                            )
-                        }
-                    },
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .width(300.dp)
-                        .height(44.dp)
-                        .clip(RoundedCornerShape(15.dp)),
-                    colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    )
+        )
 
-                )
-
-                val filteredBooks = DataManager.data.filter { book ->
-                    book.title.contains(searchQuery.value, ignoreCase = true)
-                }
-
-                Text(
-                    text = "Filter",
-                    modifier = Modifier
-                        .padding(end = 10.dp)
-                        .clickable { }
-                        .clip(RoundedCornerShape(15.dp))
-                        .background(Color(0xFFcbf5dd))
-                        .padding(15.dp)
-                )
-            }
+        val filteredBooks = DataManager.data.filter { book ->
+            book.title.contains(searchQuery.value, ignoreCase = true)
         }
+
+        Text(
+            text = "Filter",
+            modifier = Modifier
+                .padding(end = 10.dp)
+                .clickable { }
+                .clip(RoundedCornerShape(15.dp))
+                .background(Color(0xFFcbf5dd))
+                .padding(15.dp),
+            color = Color.Black
+        )
     }
 }
+
+
+
 

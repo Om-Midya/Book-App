@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.bookharborexchange.R
 import com.example.bookharborexchange.model.Book
-import com.example.bookharborexchange.ui.screens.SearchBar
+
 
 
 @Composable
